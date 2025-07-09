@@ -1,5 +1,6 @@
 package ru.yandex.practicum.filmorate.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.validation.constraints.NotBlank;
@@ -13,14 +14,14 @@ import ru.yandex.practicum.filmorate.validation.NotBefore;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-/**
- * Film.
- */
 @Data
 public class Film {
-
-    private Long id;
+    @JsonProperty("likes")
+    private final Set<Long> userLikes = new HashSet<>();
+    private long id;
     @NotBlank
     private String name;
     @Size(max = 200)
